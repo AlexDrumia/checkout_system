@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_143250) do
+ActiveRecord::Schema.define(version: 2020_10_13_131256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2020_10_12_143250) do
   create_table "baskets", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "baskets_items", id: false, force: :cascade do |t|
+    t.bigint "basket_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["basket_id", "item_id"], name: "index_baskets_items_on_basket_id_and_item_id", unique: true
   end
 
   create_table "items", force: :cascade do |t|
