@@ -14,7 +14,7 @@
 			<tr>
 				<td><%= item.name %></td>
 				<td><%= item.price %></td>
-				<td><%= link_to "Add to basket", baskets_url %></td>
+				<td><%= button_to "Add to basket", add_item_url(item), method: :post %></td>
 			</tr>
 		<% end %>
 	</tbody>
