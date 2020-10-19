@@ -1,6 +1,7 @@
 class BasketsController < ApplicationController
-	def index
-		render json: "'Add to basket' method under construction!"
+	def show
+		@basket = Basket.first
+		render :show
 	end
 end
 

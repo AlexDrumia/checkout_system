@@ -8,7 +8,14 @@ class ItemsController < ApplicationController
 		basket = Basket.first
 		item = Item.find(params[:id])
 		basket.items << item
-		render json: basket.items
+		redirect_to items_url
+	end
+
+	def remove
+		basket = Basket.first
+		item = Item.find(params[:id])
+		basket.items.delete(item)
+		redirect_to basket_url
 	end
 end
 
