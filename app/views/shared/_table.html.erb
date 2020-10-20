@@ -1,0 +1,27 @@
+<table>
+	<thead>
+		<tr>
+			<th>Item</th>
+			<th>Price</th>
+			<% if action == :show %>
+				<th>Quantity:</th>
+			<% end %>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% items.each do |item| %> 
+			<tr>
+				<td><%= item.name %></td>
+				<td><%= item.price %></td>
+			<% if action == :show %>
+				<td><%= button_to "Remove item", remove_item_url(item), method: :delete %></td>
+			<% else %>
+				<td><%= button_to "Add to basket", add_item_url(item), method: :post %></td>
+			<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+

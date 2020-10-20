@@ -1,24 +1,6 @@
 <h1>Item list</h1>
 
-<table>
-	<thead>
-		<tr>
-			<th>Item</th>
-			<th>Price</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @items.each do |item| %> 
-			<tr>
-				<td><%= item.name %></td>
-				<td><%= item.price %></td>
-				<td><%= button_to "Add to basket", add_item_url(item), method: :post %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<%= render 'shared/table', items: @items, action: :index %>
 
 <%= link_to "View Basket", basket_path([:id]) %>
 
