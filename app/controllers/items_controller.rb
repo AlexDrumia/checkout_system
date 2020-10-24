@@ -7,10 +7,9 @@ class ItemsController < ApplicationController
 	def add
 		basket = Basket.first
 		item = Item.find_by(id: params[:id])
-		q = params[:qty].to_i
-		q.times { basket.items << item }
-		render json: basket.items
-#		redirect_to items_url
+		qty = params[:qty].to_i
+		qty.times { basket.items << item }
+		redirect_to items_url
 	end
 
 	def remove
