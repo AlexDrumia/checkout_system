@@ -3,9 +3,7 @@
 		<tr>
 			<th>Item</th>
 			<th>Price</th>
-			<% if action == :show %>
-				<th>Quantity:</th>
-			<% end %>
+			<th>Quantity:</th>
 			<th colspan="3"></th>
 		</tr>
 	</thead>
@@ -15,11 +13,23 @@
 			<tr>
 				<td><%= item.name %></td>
 				<td><%= item.price %></td>
-			<% if action == :show %>
-				<td><%= button_to "Remove item", remove_item_url(item), method: :delete %></td>
-			<% else %>
-				<td><%= button_to "Add to basket", add_item_url(item), method: :post %></td>
-			<% end %>
+
+				<% if action == :show %>
+					<td><%= button_to "Remove item", remove_item_url(item), method: :delete %></td>
+				<% else %>
+					<form method="post" action="/items/<%= item[:id] %>/add" class="button_to">
+						<td>
+								<select id="quantity" name="qty">
+									<option value="0" disabled selected>0</option>
+									<% (1..10).each do |i| %>
+										<option value="<%= i %>"><%= i %></option>
+									<% end %>
+								</select>
+						</td>
+
+						<td><input type="submit" value="Add to basket"/></td>
+					</form>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>
