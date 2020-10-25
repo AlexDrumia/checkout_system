@@ -1,3 +1,5 @@
+<!-- UNDER CONSTRUCTION -->
+
 <table>
 	<thead>
 		<tr>
@@ -15,6 +17,12 @@
 				<td><%= item.price %></td>
 
 				<% if action == :show %>
+					<% item_id = item[:id] %>
+					<% same_basket_items = Basket.first.items.where("id = '#{item_id}'") %>
+					<td><%= item_qty = same_basket_items.count %></td>
+						
+
+
 					<td><%= button_to "Remove item", remove_item_url(item), method: :delete %></td>
 				<% else %>
 					<form method="post" action="/items/<%= item[:id] %>/add" class="button_to">

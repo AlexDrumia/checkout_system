@@ -1,6 +1,40 @@
 <h1>Item list</h1>
 
-<%= render 'shared/table', items: @items, action: :index %>
+<table>
+	<thead>
+		<tr>
+			<th>Item</th>
+			<th>Price</th>
+			<th>Quantity:</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
 
-<%= link_to "View Basket", basket_path([:id]) %>
+	<tbody>
+		<% @items.each do |item| %> 
+			<tr>
+				<td><%= item.name %></td>
+				<td><%= item.price %></td>
+
+					<form method="post" action="/items/<%= item[:id] %>/add" class="button_to">
+						<td>
+								<select id="quantity" name="qty">
+									<option value="0" disabled selected>0</option>
+									<% (1..10).each do |i| %>
+										<option value="<%= i %>"><%= i %></option>
+									<% end %>
+								</select>
+						</td>
+
+						<td><input type="submit" value="Add to basket"/></td>
+					</form>
+				
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to "View Basket", basket_path([1]) %>
+
+<%#= render 'shared/table', items: @items, action: :index %>
 
